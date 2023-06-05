@@ -2,3 +2,23 @@
 @import url("../../../../../.config/executor@raujonas.github.io/custom.css");
 
 /* This file will hold executor related css if needed someday*/
+.mypanel-box {
+  /* display: flex;
+  flex-direction: column; */
+  padding-top: 0px;
+  font-size: 0.7em;
+}
+
+.mypanel-vbox {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  text-align: center;
+}
+
+.mylabel {
+  color: #aaa;
+}
+
+.mylabel2 {
+  color: #fff;
+}

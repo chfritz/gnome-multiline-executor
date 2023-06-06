@@ -7,20 +7,18 @@
   flex-direction: column; */
   padding-top: 0px;
   font-size: 0.7em;
-  color: #aaa;
 }
 
 .mypanel-vbox {
-  /* background-color: #880000; */
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  text-align: center;
 }
 
 .mylabel {
-  /* required for some positioning? */
-  font-size: .0em;
+  color: #aaa;
 }
 
 .mylabel2 {
-  /* required for some positioning? */
-  font-size: .0em;
   color: #fff;
 }

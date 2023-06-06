@@ -388,7 +388,7 @@ async function setOutput(location, index) {
     const label = location.output[index][i];
 
     label.set_text(output);
-    label.set_style_class_name("");
+    // label.set_style_class_name("");
 
     if (executorSettingsArray != null) {
       executorSettingsArray.forEach(setting => {

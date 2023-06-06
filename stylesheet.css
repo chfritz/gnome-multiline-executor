@@ -10,7 +10,17 @@
   color: #aaa;
 }
 
+.mypanel-vbox {
+  /* background-color: #880000; */
+}
+
 .mylabel {
   /* required for some positioning? */
   font-size: .0em;
+}
+
+.mylabel2 {
+  /* required for some positioning? */
+  font-size: .0em;
+  color: #fff;
 }

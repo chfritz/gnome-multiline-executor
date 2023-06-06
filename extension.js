@@ -68,7 +68,7 @@ function enable() {
     this.locations[position].box = new St.BoxLayout({
       // style_class: 'panel-button',
       style_class: 'mypanel-box',
-      vertical: true,
+      // vertical: true,
       y_align: Clutter.ActorAlign.START,
       reactive: true
     });
@@ -153,14 +153,24 @@ function initOutputLabels(location) {
         new St.Label({
           y_align: Clutter.ActorAlign.START,
           y_expand: true,
-          style_class: 'mylabel',
+          style_class: 'mylabel2',
         }),
       ];
       // location.output[index][0].get_clutter_text().set_ellipsize(Pango.EllipsizeMode.NONE)
       // location.output[index][1].get_clutter_text().set_ellipsize(Pango.EllipsizeMode.NONE)
+      // location.box.add_child(location.output[index][0]);
+      // location.box.add_child(location.output[index][1]);
 
-      location.box.add_child(location.output[index][0]);
-      location.box.add_child(location.output[index][1]);
+      const vertBox = new St.BoxLayout({
+        style_class: 'mypanel-vbox',
+        vertical: true,
+        y_align: Clutter.ActorAlign.START,
+        reactive: true
+      });
+      location.box.add_child(vertBox);
+
+      vertBox.add_child(location.output[index][0]);
+      vertBox.add_child(location.output[index][1]);
     }, this);
 
 }
@@ -173,15 +183,19 @@ function onStatusChanged(location) {
 
     location.stopped = false;
     if (location.lastIndex === null) {
-      this.checkCommands(location, this.settings.get_value(location.name + '-commands-json').deep_unpack());
+      this.checkCommands(location, this.settings.get_value(
+          location.name + '-commands-json').deep_unpack());
       location.lastIndex = settings.get_value(location.name + '-index').deep_unpack();
-    } else if (settings.get_value(location.name + '-index').deep_unpack() !== location.lastIndex) {
+    } else if (settings.get_value(location.name + '-index').deep_unpack()
+      !== location.lastIndex) {
       location.lastIndex = settings.get_value(location.name + '-index').deep_unpack();
     } else {
-      this.checkCommands(location, this.settings.get_value(location.name + '-commands-json').deep_unpack());
+      this.checkCommands(location,
+        this.settings.get_value(location.name + '-commands-json').deep_unpack());
     }
 
-    Main.panel['_' + location.name + 'Box'].insert_child_at_index(location.box, location.lastIndex);
+    Main.panel['_' + location.name + 'Box'].insert_child_at_index(
+      location.box, location.lastIndex);
 
   } else {
     location.stopped = true;
@@ -285,7 +299,8 @@ async function execCommand(command, argv, input = null, cancellable = null) {
           if (!proc.get_successful()) {
             let status = proc.get_exit_status();
 
-            log('Executor: error in command "' + command.command + '": ' + (stderr ? stderr.trim() : GLib.strerror(status)));
+            log('Executor: error in command "' + command.command + '": ' +
+              (stderr ? stderr.trim() : GLib.strerror(status)));
 
             /*throw new Gio.IOErrorEnum({
             code: Gio.io_error_from_errno(status),
@@ -319,15 +334,18 @@ function callback(command, stdout) {
   //     outputAsOneLine = '';
   // }
 
-  let locationIndex = Object.keys(POSITIONS).find(key => POSITIONS[key] === command.locationName)
+  let locationIndex =
+    Object.keys(POSITIONS).find(key => POSITIONS[key] === command.locationName);
 
   if (!this.locations[locationIndex].stopped) {
-    if (!this.locations[locationIndex].commandsSettings.commands.some(c => c.uuid === command.uuid)) {
+    if (!this.locations[locationIndex].commandsSettings.commands.some(
+      c => c.uuid === command.uuid)) {
       this.locations[locationIndex].commandsOutput.splice(index, 1);
     } else {
       this.locations[locationIndex].commandsOutput[command.index] = output
 
-      if (this.locations[locationIndex].commandsSettings.commands.length < this.locations[locationIndex].commandsOutput.length) {
+      if (this.locations[locationIndex].commandsSettings.commands.length
+        < this.locations[locationIndex].commandsOutput.length) {
         this.locations[locationIndex].commandsOutput = [];
       }
 

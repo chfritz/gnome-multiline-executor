@@ -1,3 +1,5 @@
+*Modified*: two-line output
+
 # **Executor - Gnome Shell Extension**
 ![Maintenance](https://img.shields.io/maintenance/yes/2023)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/raujonas/executor)
@@ -13,3 +15,7 @@ Execute multiple shell commands periodically with separate intervals and display
 <img src="docs/result.png" alt="result" width="967">
 
 ## Documentation: [here](https://raujonas.github.io/executor/)
+
+## Development
+
+It seems to be sufficient to disable and re-enable the extension to reload the CSS, but when code changes are made, a Alt-F2 + `r` (restart of gnome shell) is required.

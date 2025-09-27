@@ -1,7 +1,7 @@
 {
-  "name": "Executor",
-  "description": "Execute multiple shell commands periodically with separate intervals and display the output in gnome top bar.",
-  "uuid": "executor@raujonas.github.io",
+  "name": "Multi-line Executor",
+  "description": "Execute multiple shell commands periodically with separate intervals and display the output in gnome top bar on two lines.",
+  "uuid": "multiline-executor@chfritz.github.io",
   "settings-schema": "org.gnome.shell.extensions.executor",
   "shell-version": [
     "45",
@@ -9,6 +9,6 @@
     "47",
     "48"
   ],
-  "url": "https://github.com/raujonas/executor",
+  "url": "https://github.com/chfritz/gnome-multiline-executor",
   "version": 28
 }
